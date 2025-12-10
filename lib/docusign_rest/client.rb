@@ -1347,7 +1347,7 @@ module DocusignRest
       }
 
       uri = build_uri("/accounts/#{@acct_id}/envelopes/#{options[:envelope_id]}/documents/#{options[:document_id]}")
-      post_body = open(options[:file_path]).read
+      post_body = File.open(options[:file_path]).read
 
       http = initialize_net_http_ssl(uri)
       request = Net::HTTP::Put.new(uri.request_uri, headers(headers))
