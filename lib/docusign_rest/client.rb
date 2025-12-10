@@ -1330,7 +1330,7 @@ module DocusignRest
     #
     # envelope_id  - ID of the envelope from which the doc will be added
     # document_id - ID of the document to add
-    # file_path - Local or remote path to file
+    # file_path - Local path to file
     # content_type - optional content type for file.  Defaults to application/pdf.
     # file_name - optional name for file.  Defaults to basename of file_path.
     # file_extension - optional extension for file.  Defaults to extname of file_name.
@@ -1347,7 +1347,7 @@ module DocusignRest
       }
 
       uri = build_uri("/accounts/#{@acct_id}/envelopes/#{options[:envelope_id]}/documents/#{options[:document_id]}")
-      post_body = open(options[:file_path]).read
+      post_body = File.open(options[:file_path]).read
 
       http = initialize_net_http_ssl(uri)
       request = Net::HTTP::Put.new(uri.request_uri, headers(headers))
